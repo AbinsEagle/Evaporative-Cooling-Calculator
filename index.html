@@ -2,31 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Evaporative Cooling Calculator</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive All-Weather Water Heater Schematic</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+    }
+    .component {
+      fill: #ffa534;
+      stroke: #222;
+      stroke-width: 2;
+      rx: 10;
+    }
+    .label {
+      font-size: 12px;
+      fill: #000;
+    }
+    .arrow {
+      stroke: #007bff;
+      stroke-width: 2;
+      marker-end: url(#arrowhead);
+      animation: flow 2s infinite ease-in-out;
+    }
+    @keyframes flow {
+      0% { stroke-dashoffset: 30; }
+      100% { stroke-dashoffset: 0; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Evaporative Cooling Calculator</h1>
-  <div class="container">
-    <div class="left-panel">
-      <form id="calcForm">
-        <label>Surface Temp (°C): <input type="number" id="temp_surface" required /></label><br/>
-        <label>Ambient Temp (°C): <input type="number" id="temp_air" required /></label><br/>
-        <label>Relative Humidity (%): <input type="number" id="rh" required /></label><br/>
-        <label>Airflow Rate (m³/min): <input type="number" id="airflow" required /></label><br/>
-        <label>Coolant Flow Rate (L/min): <input type="number" id="coolant_flow" required /></label><br/>
-        <label>Surface Area (m²): <input type="number" id="surface_area" required /></label><br/>
-        <label>Fan Power (W): <input type="number" id="fan_power" required /></label><br/>
-        <label>Pump Power (W): <input type="number" id="pump_power" required /></label><br/>
-        <button type="submit">Calculate</button>
-      </form>
-      <div id="result"></div>
-    </div>
-    <div class="right-panel" id="calcDetails">
-      <!-- Calculation steps will appear here -->
-    </div>
-  </div>
-  <script src="script.js"></script>
+  <h2>Interactive All-Weather Water Heater System</h2>
+  <svg viewBox="0 0 800 500">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#007bff" />
+      </marker>
+    </defs>
+
+    <!-- Components -->
+    <rect x="320" y="50" width="160" height="60" class="component" />
+    <text x="400" y="85" text-anchor="middle" class="label">Fan</text>
+
+    <rect x="250" y="130" width="300" height="80" class="component" />
+    <text x="400" y="175" text-anchor="middle" class="label">Heat Exchanger</text>
+
+    <rect x="600" y="140" width="120" height="60" class="component" />
+    <text x="660" y="175" text-anchor="middle" class="label">Water Reservoir</text>
+
+    <rect x="310" y="250" width="180" height="80" class="component" />
+    <text x="400" y="295" text-anchor="middle" class="label">Water Heater Tank</text>
+
+    <rect x="200" y="140" width="50" height="30" class="component" />
+    <text x="225" y="160" text-anchor="middle" class="label">Pump</text>
+
+    <rect x="490" y="250" width="50" height="30" class="component" />
+    <text x="515" y="270" text-anchor="middle" class="label">Pump</text>
+
+    <!-- Flow Arrows -->
+    <line x1="600" y1="170" x2="550" y2="170" class="arrow" stroke-dasharray="6" />
+    <line x1="550" y1="170" x2="550" y2="170" class="arrow" stroke-dasharray="6" />
+    <line x1="250" y1="170" x2="200" y2="170" class="arrow" stroke-dasharray="6" />
+    <line x1="225" y1="170" x2="250" y2="290" class="arrow" stroke-dasharray="6" />
+    <line x1="310" y1="290" x2="200" y2="290" class="arrow" stroke-dasharray="6" />
+    <line x1="490" y1="290" x2="310" y2="170" class="arrow" stroke-dasharray="6" />
+
+  </svg>
 </body>
 </html>
