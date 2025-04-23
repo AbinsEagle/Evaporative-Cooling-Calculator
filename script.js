@@ -21,6 +21,7 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
   const cooling_rate = latent_heat_removed / 60 / (Q_water * 4.186); // °C/min
 
   document.getElementById('result').innerHTML = `
+    <h3>Results</h3>
     <p><strong>Evaporation Rate:</strong> ${evap_rate.toFixed(2)} g/hr</p>
     <p><strong>Latent Heat Removed:</strong> ${latent_heat_removed.toFixed(2)} kJ/hr</p>
     <p><strong>Cooling Power:</strong> ${cooling_power.toFixed(2)} W</p>
@@ -28,5 +29,16 @@ document.getElementById('calcForm').addEventListener('submit', function(e) {
     <p><strong>COP (Efficiency):</strong> ${cop.toFixed(2)}</p>
     <p><strong>Coolant Temp Drop:</strong> ${coolant_temp_drop.toFixed(2)} °C</p>
     <p><strong>Cooling Rate:</strong> ${cooling_rate.toFixed(2)} °C/min</p>
+  `;
+
+  document.getElementById('calcDetails').innerHTML = `
+    <h3>Calculation Steps</h3>
+    <p><strong>Evaporation Rate (g/hr)</strong> = 25 × ${A_surface} × (1 - ${RH}) × ${Q_air} × 60 × 1000 = <strong>${evap_rate.toFixed(2)}</strong></p>
+    <p><strong>Latent Heat Removed (kJ/hr)</strong> = ${evap_rate_kg.toFixed(2)} × 2260 = <strong>${latent_heat_removed.toFixed(2)}</strong></p>
+    <p><strong>Cooling Power (W)</strong> = ${latent_heat_removed.toFixed(2)} ÷ 3.6 = <strong>${cooling_power.toFixed(2)}</strong></p>
+    <p><strong>Total Power Input (W)</strong> = ${P_fan} + ${P_pump} = <strong>${total_power.toFixed(2)}</strong></p>
+    <p><strong>COP</strong> = ${cooling_power.toFixed(2)} ÷ ${total_power.toFixed(2)} = <strong>${cop.toFixed(2)}</strong></p>
+    <p><strong>Coolant Temp Drop (°C)</strong> = ${latent_heat_removed.toFixed(2)} ÷ (${Q_water} × 60 × 4.186) = <strong>${coolant_temp_drop.toFixed(2)}</strong></p>
+    <p><strong>Cooling Rate (°C/min)</strong> = ${latent_heat_removed.toFixed(2)} ÷ 60 ÷ (${Q_water} × 4.186) = <strong>${cooling_rate.toFixed(2)}</strong></p>
   `;
 });
